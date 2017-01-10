@@ -37,7 +37,7 @@ class BonusCrawler:
           name = p.find('./div/h1').text
           if name not in self.products:
             product = {}
-            product['amount'] = p.find('./div[@class="product-description"]/span').text
+            product['amount'] = p.find('./div[1]/span').text
             before = p.find('./div[3]/div[1]/span')
             after = p.find('./div[3]/div[2]/span')
             if before is not None and after is not None and after.text != '.':
