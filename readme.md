@@ -3,11 +3,15 @@ This is a crawler to gather all bonus information about one of the most famous D
 
 ##Prerequisites
 To run this crawler, you need to install the following software/pakages.
-1. Python 3.5.x
-2. Selenium Package for Python
-3. lxml for Python  
-4. Chrome
-5. Chrome WebDriver
+Python 3.5.x
+
+Selenium Package for Python
+
+lxml for Python  
+
+Chrome
+
+Chrome WebDriver
 ##Features to be added
 1. Send the information to users by email;
 2. Use database to store information;
