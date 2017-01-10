@@ -1,10 +1,10 @@
-This is a crawler to gather all bonus information of the most famous Dutch supermarket, Abert Heijn.
+#AH Bonus Collector
+This is a crawler to gather all bonus information about one of the most famous Dutch supermarket, Abert Heijn. The starting url is [ah/bonus](https://www.ah.nl/bonus/)
 
 #Prerequisites
 To run this crawler, you need to install the following software/pakages:
 
 1. Python 3.5.x
-
 2. Selenium Package for Python
 
 3. lxml for Python  

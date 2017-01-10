@@ -74,4 +74,3 @@ ah_url = 'https://www.ah.nl/bonus'
 chrome_driver = input("Please enter the path of your chrome webdriver:")
 bonus_crawler = BonusCrawler(ah_url, chrome_driver)
 bonus_crawler.crawl()
-print (bonus_crawler.products)
