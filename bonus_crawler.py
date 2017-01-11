@@ -64,12 +64,10 @@ class BonusCrawler:
     urls_temp = []
     for url in self.urls:
       self.getprodinfo(url)
-      urls_to_be_extracted = []
 
       #navigate to the element including further url paths
       li = self.html_tree.xpath('//div/div/div/div/article/div/a')
-      urls_to_be_extracted = ['https://www.ah.nl' + ele.attrib['href'] for ele in li]
-      urls_temp = urls_to_be_extracted
+      urls_temp = ['https://www.ah.nl' + ele.attrib['href'] for ele in li]
       self.urls = urls_temp
       self.urls_all.extend(urls_temp)
 
