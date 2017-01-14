@@ -9,17 +9,12 @@ class BonusCrawler:
   '''
   This AH bonus crawler extracts the information of products on sale from AH website.  
   '''
-  #store all urls crawled
-  urls_all = []
-  #store urls to be crawled
-  urls = []
-  #store all products crawled
-  products = {}
 
-  def __init__(self, first_url, webdriver_path):
+  def __init__(self, first_url, webdriver_path, products=None):
     self.urls.append(first_url)
     self.urls_all.append(first_url)
     self.driver = webdriver.Chrome(webdriver_path)
+    self.products = products
 
   #get product info at the current page
   def getprodinfo(self, url):
