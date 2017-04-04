@@ -11,6 +11,8 @@ class BonusCrawler:
   '''
 
   def __init__(self, first_url, webdriver_path, products=None):
+    self.urls = []
+    self.urls_all = []
     self.urls.append(first_url)
     self.urls_all.append(first_url)
     self.driver = webdriver.Chrome(webdriver_path)
