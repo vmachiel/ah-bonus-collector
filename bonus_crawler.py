@@ -5,10 +5,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from io import StringIO
 
+
 class BonusCrawler:
-    '''
-    This AH bonus crawler extracts the information of products on sale from AH website.
-    '''
+    """
+    This AH bonus crawler extracts the information of products on sale from AH
+    website.
+    """
 
     def __init__(self, first_url, webdriver_path, products=None):
         self.urls = []
@@ -18,17 +20,17 @@ class BonusCrawler:
         self.driver = webdriver.Chrome(webdriver_path)
         self.products = products
 
-    #get product info at the current page
+    # get product info at the current page
     def getprodinfo(self, url):
         try:
             self.driver.get(url)
             WebDriverWait(self.driver, 60).until(EC.presence_of_element_located((By.XPATH, '//body/div/div/div/div/article[last()]')))
 
-            #get html
+            # get html
             element = self.driver.find_element_by_xpath('//*')
             html = element.get_attribute('outerHTML')
 
-            #parse html and find elements
+            # parse html and find elements
             parser = etree.HTMLParser()
             self.html_tree = etree.parse(StringIO(html), parser)
             li = self.html_tree.xpath('//div/div/div/div/article')
@@ -52,28 +54,29 @@ class BonusCrawler:
                         self.products[name] = product
 
         except Exception as e:
-            print ('An error occured: {0}'.format(e))
+            print('An error occured: {0}'.format(e))
 
         return self.products
 
-#keep crawling sub-pages
+# keep crawling sub-pages
     def crawl(self):
         urls_temp = []
         for url in self.urls:
             self.getprodinfo(url)
 
-            #navigate to the element including further url paths
+            # navigate to the element including further url paths
             li = self.html_tree.xpath('//div/div/div/div/article/div/a')
             urls_temp = ['https://www.ah.nl' + ele.attrib['href'] for ele in li]
             self.urls = urls_temp
             self.urls_all.extend(urls_temp)
 
-        #crawl more or terminate
+        # crawl more or terminate
         if not urls_temp:
             self.driver.quit()
             return self.urls_all
         else:
             self.crawl()
+
 
 def main():
     ah_url = 'https://www.ah.nl/bonus'
