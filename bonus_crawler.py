@@ -24,7 +24,9 @@ class BonusCrawler:
     def getprodinfo(self, url):
         try:
             self.driver.get(url)
-            WebDriverWait(self.driver, 60).until(EC.presence_of_element_located((By.XPATH, '//body/div/div/div/div/article[last()]')))
+            XPATH = '//body/div/div/div/div/article[last()]'
+            WebDriverWait(self.driver, 60) \
+                .until(EC.presence_of_element_located((By.XPATH, XPATH)))
 
             # get html
             element = self.driver.find_element_by_xpath('//*')
@@ -44,7 +46,9 @@ class BonusCrawler:
                         product['amount'] = p.find('./div[1]/span').text
                         before = p.find('./div[3]/div[1]/span')
                         after = p.find('./div[3]/div[2]/span')
-                        if before is not None and after is not None and after.text != '.':
+                        if before is not None and \
+                           after is not None and \
+                           after.text != '.':
                             product['price_before'] = before.text
                             product['price_after'] = after.text
                         else:
@@ -66,7 +70,8 @@ class BonusCrawler:
 
             # navigate to the element including further url paths
             li = self.html_tree.xpath('//div/div/div/div/article/div/a')
-            urls_temp = ['https://www.ah.nl' + ele.attrib['href'] for ele in li]
+            urls_temp = ['https://www.ah.nl' +
+                         ele.attrib['href'] for ele in li]
             self.urls = urls_temp
             self.urls_all.extend(urls_temp)
 
