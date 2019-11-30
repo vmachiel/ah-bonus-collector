@@ -17,7 +17,7 @@ class BonusCrawler:
         self.urls_all = []
         self.urls.append(first_url)
         self.urls_all.append(first_url)
-        self.driver = webdriver.Chrome(webdriver_path)
+        self.driver = webdriver.Firefox(webdriver_path)
         self.products = products
 
     # get product info at the current page
@@ -85,8 +85,8 @@ class BonusCrawler:
 
 def main():
     ah_url = 'https://www.ah.nl/bonus'
-    chrome_driver = input("Please enter the path of your chrome webdriver:")
-    bonus_crawler = BonusCrawler(ah_url, chrome_driver)
+    Firefox_driver = input("Please enter the path of your Firefox webdriver:")
+    bonus_crawler = BonusCrawler(ah_url, Firefox_driver)
     bonus_crawler.crawl()
 
 
